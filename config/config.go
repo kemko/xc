@@ -12,13 +12,13 @@ import (
 )
 
 const defaultConfigContents = `[main]
-user = 
+user =
 mode = parallel
 history_file = ~/.xc_history
 cache_dir = ~/.xc_cache
 cache_ttl = 336 # 24 * 7 * 2
 rc_file = ~/.xcrc
-log_file = 
+log_file =
 raise = none
 exit_confirm = true
 exec_confirm = true
@@ -51,7 +51,7 @@ ServerAliveInterval = 5
 [backend]
 type = conductor
 url = http://c.inventoree.ru
-work_groups = 
+work_groups =
 
 [passmgr]
 path =
@@ -64,6 +64,7 @@ type BackendType int
 const (
 	BTIni BackendType = iota
 	BTConductor
+	BTYanductor
 	BTInventoree
 )
 
@@ -358,6 +359,8 @@ func read(filename string, secondPass bool) (*XCConfig, error) {
 				cfg.BackendCfg.Type = BTIni
 			case "conductor":
 				cfg.BackendCfg.Type = BTConductor
+			case "yanductor":
+				cfg.BackendCfg.Type = BTYanductor
 			case "inventoree":
 				cfg.BackendCfg.Type = BTInventoree
 			default:

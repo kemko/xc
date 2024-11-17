@@ -9,6 +9,7 @@ import (
 	"github.com/viert/xc/backend/conductor"
 	"github.com/viert/xc/backend/inventoree"
 	"github.com/viert/xc/backend/localini"
+	"github.com/viert/xc/backend/yanductor"
 
 	_ "net/http/pprof"
 
@@ -59,6 +60,19 @@ func main() {
 
 	case config.BTConductor:
 		be, err := conductor.New(xccfg)
+		if err != nil {
+			term.Errorf("Error creating conductor backend: %s\n", err)
+			return
+		}
+
+		tool, err = cli.New(xccfg, be)
+		if err != nil {
+			term.Errorf("%s\n", err)
+			return
+		}
+
+	case config.BTYanductor:
+		be, err := yanductor.New(xccfg)
 		if err != nil {
 			term.Errorf("Error creating conductor backend: %s\n", err)
 			return
