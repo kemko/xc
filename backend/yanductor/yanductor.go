@@ -45,12 +45,6 @@ func New(cfg *config.XCConfig) (*Yanductor, error) {
 
 	y.apiURL = apiURL
 
-	// Load data to populate fields
-	err := y.Load()
-	if err != nil {
-		return nil, fmt.Errorf("error loading data: %s", err)
-	}
-
 	return y, nil
 }
 
