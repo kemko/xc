@@ -6,7 +6,7 @@ import (
 	"github.com/viert/xc/store"
 )
 
-// Yanductor is a backend based on Yanductor API
+// Yanductor is a backend based on Conductor API
 type Yanductor struct {
     workgroupNames []string
     cacheTTL       time.Duration
